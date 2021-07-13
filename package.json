@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "twerkers",
+  "version": "1.0.0",
+  "description": "Backend using Cloudflare Workers + Macrometa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rishav Sharan <rishav.sharan@live.com>",
+  "license": "MIT",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "itty-router": "^2.3.10",
+    "itty-router-extras": "^0.4.2"
+  }
+}
