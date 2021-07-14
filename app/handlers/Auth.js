@@ -1,8 +1,9 @@
-const sayHello = async () => {
+const GoogleCallback = async (req) => {
     try {
+        // const content = await req.json()
         return {
             status: 200, 
-            data: `Yo yo yo this is moneysing`,
+            data: 'Creating Todo: ' + JSON.stringify(content)
         }
         xxx
     } catch (err) {
@@ -14,4 +15,4 @@ const sayHello = async () => {
     }
 }
 
-export {sayHello}
+export {GoogleCallback}

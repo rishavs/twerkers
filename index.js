@@ -1,13 +1,21 @@
 import { Router } from 'itty-router'
 import { error } from 'itty-router-extras'
-import { sayHello } from './app/handlers/misc'
+import * as MiscHandler from './app/handlers/Misc'
+import * as AuthHandler from './app/handlers/Auth'
 
 // now let's create a router (note the lack of "new")
 const router = Router()
 
-router.get('/hello', () => new Response(
-    sayHello()
-))
+router.get('/api/v1/auth/google_signin', async () => {
+    let handlerResp = await AuthHandler.GoogleCallback
+    return new Response(handlerResp.data, {status: handlerResp.status})
+})
+
+
+router.get('/hello', async () => {
+    let handlerResp = await MiscHandler.sayHello()
+    return new Response(handlerResp.data, {status: handlerResp.status})
+})
 
 router.post('/read', async req => {
     try {
@@ -19,7 +27,7 @@ router.post('/read', async req => {
         console.error(err)
         return new Response('caught errors', { status: 400 })
     }
-  })
+})
 
 
 router.get('/todos', () => new Response('Todos Index!'))
@@ -41,3 +49,7 @@ router.all('*', () => new Response('Strange errors', { status: 500 }))
 addEventListener('fetch', event =>
   event.respondWith(router.handle(event.request))
 )
+
+// export default {
+//   fetch: router.handle // yep, it's this easy.
+// }
